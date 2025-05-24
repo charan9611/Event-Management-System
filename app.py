@@ -8,7 +8,7 @@ app.secret_key = 'ckvk@#samreen'
 mysql=MySQL(app)
 CORS(app)
 
-app.config['MYSQL_HOST'] = 'sql.freesqldatabase.com'
+app.config['MYSQL_HOST'] = 'sql12.freesqldatabase.com'
 app.config['MYSQL_USER'] = 'sql12780980'
 app.config['MYSQL_PASSWORD'] = 'azvXCvY1Mv'
 app.config['MYSQL_DB'] = 'sql12780980'
