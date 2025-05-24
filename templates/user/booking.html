@@ -127,7 +127,7 @@
                     email: document.getElementById('email').value.trim()
                 };
 
-                fetch("http://127.0.0.1:5000/services/booking/confirm", {
+                fetch("https://event-management-system-ke59.onrender.com/services/booking/confirm", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(formData),
