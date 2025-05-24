@@ -8,10 +8,12 @@ app.secret_key = 'ckvk@#samreen'
 mysql=MySQL(app)
 CORS(app)
 
-app.config['MYSQL_HOST']='localhost'
-app.config['MYSQL_USER']='root'
-app.config['MYSQL_PASSWORD']='newrootpassword'
-app.config['MYSQL_DB']='demo'
+app.config['MYSQL_HOST'] = 'sql.freesqldatabase.com'
+app.config['MYSQL_USER'] = 'sql12780980'
+app.config['MYSQL_PASSWORD'] = 'azvXCvY1Mv'
+app.config['MYSQL_DB'] = 'sql12780980'
+app.config['MYSQL_PORT'] = 3306  # or use the one provided
+
 
 #main routes
 @app.route('/')
