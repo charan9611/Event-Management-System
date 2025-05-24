@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>House Warming Party | Event Management</title>
+  <script type="module" src="/static/js/script.js"></script>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Header Section */
+    .header {
+      background-image: url("/static/img/hw23.webp");
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 300px;
+
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2rem;
+      font-weight: bold;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+    }
+
+    /* Services Section */
+    .services {
+      margin-top: 30px;
+      padding: 20px;
+      max-width: 90%;
+      background: white;
+      border-radius: 40px;
+      color: black;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .services-grid {
+      display: ruby;
+      grid-template-rows: repeat(auto-fit, minmax(250px, 1fr));
+      color: black;
+      gap: 30px;
+      align-items: flex-end;
+      padding: 20px;
+      justify-items: center;
+      flex-direction: row;
+      align-content: space-between;
+    }
+
+    .service-box {
+      padding: 15px;
+      border-radius: 10px;
+      width: 300px;
+      /* z-index: auto; */
+      height: 250px;
+      margin: 10px;
+      text-align: center;
+      transition: transform 0.3s;
+      background: #fff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-box:hover {
+      transform: scale(1.05);
+    }
+
+    .service-box img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+      border: 2px solid #ff5733;
+    }
+
+    .service-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .service-description {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    .booking-section {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .book-btn {
+      display: inline-block;
+      padding: 12px 20px;
+      background: #ff5733;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      margin: 10px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .book-btn:hover {
+      background: #e64a19;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo"><ion-icon name="logo-react"></ion-icon>Event</div>
+    <nav class="nav-bar">
+      <ul>
+        <li><a href="{{ url_for('home')}}">HOME</a></li>
+        <li><a href="{{ url_for('about')}}">ABOUT</a></li>
+        <li><a href="{{ url_for('services')}}">SERVICES</a></li>
+        <li><a href="{{ url_for('contact')}}">CONTACT</a></li>
+        {% if 'user' not in session %}
+        <li><a href="{{ url_for('login') }}">Login</a></li>
+        <li><a href="{{ url_for('register') }}">Sign Up</a></li>
+        {% else %}
+        <li class="dropdown">
+          <a href="javascript:void(0);" class="dropbtn" onclick="toggleDropdown()">Welcome, {{ session['user']
+            }} </a>
+          <div id="dropdownContent" class="dropdown-content">
+            <a href="{{ url_for('logout') }}">Logout</a>
+          </div>
+        </li>
+        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+    <div class="hamburger" id="hamburger"> &#9776;</div>
+  </header>
+  <!-- Header Section -->
+  <div class="header">🏡 House Warming Party</div>
+
+  <!-- Services Section -->
+  <div class="services">
+    <h2>Our House Warming Party Services</h2>
+    <p>We offer **expertly managed** house warming events, including decoration, catering, music, and more! 🎉</p>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-box">
+      <img src="../static/img/homedec.jpeg" alt="Home Decorations">
+      <h3 class="service-title">Home Decorations</h3>
+      <p class="service-description">Beautiful decorations to welcome guests to your new home.</p>
+    </div>
+
+    <div class="service-box">
+      <img src="../static/img/catering2.jpg" alt="Catering Services">
+      <h3 class="service-title">Catering Services</h3>
+      <p class="service-description">Delicious vegetarian and non-vegetarian menu options.</p>
+    </div>
+
+    <div class="service-box">
+      <img src="../static/img/mus.jpg" alt="Live Music & Entertainment">
+      <h3 class="service-title">Live Music & Entertainment</h3>
+      <p class="service-description">Music, DJ, and live performers for an enjoyable experience.</p>
+    </div>
+
+    <div class="service-box">
+      <img src="../static/img/House-Warming-1.jpg" alt="Photography & Videography">
+      <h3 class="service-title">Photography & Videography</h3>
+      <p class="service-description">Capture precious memories of your housewarming event.</p>
+    </div>
+
+    <div class="service-box">
+      <img src="../static/img/housewarming-invitation-card-design.webp" alt="Custom Invitations">
+      <h3 class="service-title">Custom Invitations</h3>
+      <p class="service-description">Personalized invitation cards for your guests.</p>
+    </div>
+
+    <div class="service-box">
+      <img src="../static/img/rgft.webp   " alt="Return Gifts">
+      <h3>Return Gifts</h3>
+      <p>Memorable return gifts to thank your guests.</p>
+    </div>
+
+  </div>
+
+  <!-- Booking Section -->
+  <div class="booking-section">
+    <p>🎉 Ready to **celebrate your house warming event**? Click below to book now! 🎉</p>
+    <a href="{{ url_for('booking')}}" class="book-btn">Book Now</a>
+  </div>
+  <footer class="bg-gray-900 text-white">
+    <!-- Top Footer: Quick Links and Social Media (left and right aligned) -->
+    <div class="max-w-6xl mx-auto py-8 px-4 flex justify-between items-start" style="display: inline-flex;">
+      <!-- Quick Links (Left) -->
+      <div style=" margin: 20px; left: auto; padding: 10px;">
+        <h2 class="text-lg font-semibold mb-4">Quick Links</h2>
+        <ul class="space-y-2" style="list-style:none; font-size: 1.3rem;">
+          <li><a href="{{ url_for('home')}}" class="hover:underline">Home</a></li>
+          <li><a href="{{url_for('services')}}" class="hover:underline">Events</a></li>
+          <li><a href="{{ url_for('contact')}}" class="hover:underline">Contact</a></li>
+          <li><a href="{{ url_for('about')}}" class="hover:underline">About</a></li>
+        </ul>
+      </div>
+
+      <!-- Social Media (Right) -->
+      <div style=" margin: 20px; left: auto; padding: 10px;">
+        <h2 class="text-lg font-semibold mb-4">Follow Us</h2>
+        <ul class="space-y-2" style="list-style:none; font-size: 1.3rem;">
+          <li><a href="#" class="hover:text-blue-400">Facebook</a></li>
+          <li><a href="#" class="hover:text-blue-300">Twitter</a></li>
+          <li><a href="#" class="hover:text-pink-400">Instagram</a></li>
+          <li><a href="#" class="hover:text-red-500">YouTube</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Footer: About Info -->
+    <div class="bg-gray-800 py-6 px-4 text-center text-sm">
+      <p>&copy; 2025 Event. All Rights Reserved.</p>
+      <p>123 Event Street, City, Country | Phone: +123 456 7890 | Email: contact@event.com</p>
+    </div>
+  </footer>
+</body>
+
+</html>

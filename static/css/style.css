@@ -1,0 +1,683 @@
+/* General Page Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    /* background: url('../static/img/event-bg.jpg') no-repeat center center/cover; */
+    background: url('../img/event.avif') no-repeat center center/cover;
+    text-align: center;
+    color: white;
+    flex-direction: column;
+}
+
+/* Main Container */
+.login-container ,.register-container {
+    display: flex;
+    width: 85%;
+    max-width: 1100px;
+    height: 90vh;
+    background: rgba(0, 0, 0, 0.5); Dark overlay
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/* Left Section (Text Content) */
+.left-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.left-content h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.left-content p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+.get-started {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.get-started:hover {
+    background: white;
+    color: black;
+}
+
+/* Right Section (Login Form) */
+.right-content {
+    flex: 1;
+    max-width: 400px;
+    padding: 40px;
+    /* background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px; */
+    text-align: center;
+
+    /* Center the login box */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+/* Form Styling */
+.right-content h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    position: relative;
+    margin: 15px 0;
+}
+
+.input-group i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: gray;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Remember Me and Forgot Password */
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    margin: 10px 0;
+}
+
+.remember-forgot input {
+    margin-right: 5px;
+}
+
+.remember-forgot a {
+    color: white;
+    text-decoration: none;
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+}
+
+/* Login Button */
+#btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: #ff5733;
+    color: white;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+#btn:hover {
+    background: #e64a19;
+}
+
+/* Sign Up Link */
+p {
+    margin-top: 10px;
+    font-size: 1rem;
+}
+
+p a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+
+
+
+
+.container {
+    z-index: 3; /* Increase the z-index */
+    position: relative; /* Ensure it's above the overlay */
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background-color: #222;
+    color: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+
+/* .home{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url('../img/event.avif') no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    padding: 80px  100px 0;
+}
+.home .content 
+{
+    max-width: 600px;
+    color: white;
+}
+.content p{
+    margin: 10px 0 40px;
+}
+.content a{
+    color: black;
+    text-decoration: none;
+    border: 2px solid white;
+    font-weight: 500;
+    padding: 10px 40px ;
+    border-radius: 40px;
+    transition: 5s;
+}
+.content a:hover{
+    background: black;
+}
+.home .wrapper-login {
+    position: relative;
+    width: 440px;
+}
+.wrapper-login h2{
+    font-size: 2em;
+    color: white;
+    text-align: center;
+}
+.wrapper-logi .input-box{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 40px 0;
+
+} */
+/* Navigation */
+.nav-bar ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-bar ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    transition: 0.3s;
+    padding: 8px 12px;
+    border-radius: 5px;
+}
+
+.nav-bar ul li a:hover {
+    background: #ff5733;
+}
+
+/* Form Container */
+/* .container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    padding: 30px;
+    backdrop-filter: blur(15px);
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+} 
+
+/* h2 {
+    color: black;
+    text-transform: uppercase;
+    padding: 20px 0;
+    font-size: 2em;
+    text-align: center;
+} */
+
+/* .form-group {
+    position: relative;
+    width: 330px;
+    margin: 30px 0;
+    border-bottom: 3px solid white;
+    
+}
+
+.form-group input {
+    width: 100%;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    outline: none;
+    font-size: 1.2em;
+    color:white;
+    padding: 0 30px 0 10px;
+    border-radius: 6px;
+    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); */
+
+/* .form-group label{
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 1.2em;
+    color:white;
+}
+.form-group i{
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    font-size: 1.2em;
+    color:white;
+    
+    
+} */
+/* input:focus {
+    border: 2px solid #ff5733;
+}
+
+p {
+    text-align: center;
+    color: white;
+    padding: 10px 0;
+}
+
+p > a {
+    color: #ff5733;
+    text-decoration: none;
+    font-weight: 600;
+} */
+
+/* p > a:hover {
+    text-decoration: underline;
+    font-style: italic;
+}
+
+#btn {
+    width: 100%;
+    height: 50px;
+    background: #ff5733;
+    color: white;
+    border-radius: 6px;
+    border: none;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#btn:hover {
+    background: #cc0000; */
+    /* transform: scale(1.05);
+} */ 
+/* .login-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    background: url('../static/img/event-bg.jpg') no-repeat center center/cover;
+    align-items: center;
+    justify-content: center;
+}
+
+.left-content {
+    flex: 1;
+    color: white;
+    text-align: center;
+    padding: 50px;
+}
+
+.left-content h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.left-content p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+.get-started {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.get-started:hover {
+    background: white;
+    color: black;
+}
+
+.right-content {
+    flex: 1;
+    max-width: 400px;
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.right-content h2 {
+    color: white;
+    font-size: 2rem;
+}
+
+.input-group {
+    position: relative;
+    margin: 15px 0;
+}
+
+.input-group i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: gray;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px 10px 10px 35px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+}
+
+#btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: #ff5733;
+    color: white;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#btn:hover {
+    background: #e64a19;
+} */
+
+.faq-answer {
+    color: black;
+}
+
+/* Footer */
+footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    /* padding: 10px 0; */
+    width: 100%;
+    margin-top: auto;
+    position: relative;
+    bottom: 0;
+}
+
+.space-y-2 li a{
+    text-decoration: none;
+    color: greenyellow;
+}
+
+footer p{
+        margin-top: 10px;
+        font-size: 1.7rem;
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-bar ul {
+        display: none;
+    }
+    .nav-bar ul.show {
+        display: flex;
+        flex-direction: column;
+    }
+    .container {
+        width: 90%;
+    }
+}
+/* Hero Section */
+.hero {
+    /* position: relative; */
+    width: 100%; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* Fixing the slideshow */
+.slideshow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/* Active Slide */
+.active {
+    opacity: 1 !important;
+}
+
+
+/* Fade Effect for Slides */
+.fade {
+    animation: fadeEffect 5s infinite;
+}
+
+@keyframes fadeEffect {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    40% { opacity: 1; }
+    60% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+/* Hero Content */
+.hero-content {
+    position: absolute;
+    z-index: 1;
+    max-width: 800px;
+    text-align: center;
+    padding: 20px;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/* Social Media Icons */
+.social-icons {
+    margin: 20px 0;
+}
+
+.social-icons a {
+    color: white;
+    font-size: 1.5rem;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #ff5733;
+}
+
+/* Contact Us Button */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #ff5733;
+    color: white;
+    font-size: 1.2rem;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #e64a19;
+}
+
+.hamburger {
+    display: none;
+}
+
+/* Responsive Design */ 
+ @media screen and (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .nav-bar {
+        margin-top: 10%;
+    }
+
+    .hamburger{
+        display: flex;
+    }
+    
+    .hero-content p {
+        font-size: 1rem; 
+    }
+    
+    .btn {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+}
+
+/* Dropdown container
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown button */
+/*  */
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-weight: bold;
+    color: white;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.show {
+    display: block;
+}

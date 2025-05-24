@@ -1,0 +1,81 @@
+<!-- confirmation.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://source.unsplash.com/1600x900/?celebration,party');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 100px auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            color: #28a745;
+        }
+
+        p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .details {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+   <div class="container">
+    <h2>🎉 Booking Confirmed! 🎉</h2>
+    <p>Thank you for booking with us. Your event details are as follows:</p>
+    <div class="details">
+        <p><strong>Event Type:</strong> {{ booking[1] }}</p>
+        <p><strong>Date:</strong> {{ booking[2] }}</p>
+        <p><strong>Venue:</strong> {{ booking[3] }}</p>
+        <p><strong>Guests:</strong> {{ booking[4] }}</p>
+        <p><strong>Booker Name:</strong> {{ booking[5] }}</p>
+        <p><strong>Booker Email:</strong> {{ booking[6] }}</p>
+    </div>
+    <p>We will contact you soon with further details. Have a great day!</p>
+    <a href="{{ url_for('home') }}">Go to Home</a>
+</div>
+
+
+</body>
+
+</html>

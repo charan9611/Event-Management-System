@@ -1,0 +1,158 @@
+<!-- booking.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Event</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://source.unsplash.com/1600x900/?event,celebration');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .info-box {
+            background: #ff5733;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #ff5733;
+            color: white;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #e64a19;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Book Your Dream Event</h2>
+        <p>Plan your special occasion with us and make it unforgettable. Select your event details below.</p>
+        <div class="info-box">
+            🎉 Exclusive Offer: Book now and get 10% off on decoration services! Limited time only.
+        </div>
+        <form id="BookingForm" method="POST">
+            <label>Event Type:</label>
+            <select name="event_type" id="event_type">
+                <option value="wedding">Wedding</option>
+                <option value="birthday">Birthday</option>
+                <option value="corporate">Corporate</option>
+                <option value="concert">Concert</option>
+                <option value="college Events">College Events</option>
+                <option value="social Events">Social Events</option>
+                <option value="House Warming">House Warming</option>
+                <option value="stage Events">stage Events</option>
+                <option value="baby showers">Baby Showers</option>
+                <option value="anniversary">Anniversary</option>
+            </select>
+
+            <label>Event Date:</label>
+            <input type="date" name="event_date" id="event_date"   required>
+
+            <label>Venue Location:</label>
+            <input type="text" name="venue" id="venue" required>
+
+            <label>Number of Guests:</label>
+            <input type="number" name="guests" id="guests" required>
+
+            <label>Your Name:</label>
+            <input type="text" name="name" id="name" required>
+
+            <label>Email:</label>
+            <input type="email" name="email" id="email" required>
+
+            <button type="submit" id="btn">CONFIRM BOOKING</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById('BookingForm').addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                const formData = {
+                    event_type: document.getElementById('event_type').value.trim(),
+                    event_date: document.getElementById('event_date').value.trim(),
+                    venue: document.getElementById('venue').value.trim(),
+                    guests: document.getElementById('guests').value.trim(),
+                    name: document.getElementById('name').value.trim(),
+                    email: document.getElementById('email').value.trim()
+                };
+
+                fetch("http://127.0.0.1:5000/services/booking/confirm", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(formData),
+                })
+                    .then(response => {
+                        if (!response.ok) throw new Error("Booking failed");
+                        return response.json();
+                    })
+                    .then(data => {
+                        alert(data.message);
+                        window.location.href = `/booking/confirmation/${data.booking_id}`;
+                    })
+                    .catch(error => alert("Error: " + error.message));
+            });
+        });
+    </script>
+
+    <!-- {% if 'user_id' not in session %}
+    <script>
+        alert("Please login first to book an event!");
+        window.location.href = "/login";
+    </script>
+    {% endif %} -->
+
+
+</body>
+
+</html>

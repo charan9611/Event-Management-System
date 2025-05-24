@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | Event Management</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script type="module" src="/static/js/script.js"></script>
+</head>
+
+<body>
+    <div class="login-container"> <!-- Using same container class -->
+        <!-- Left Side -->
+        <div class="left-content">
+            <h1>Sign Up</h1>
+            <p>Join us to plan your dream events!</p>
+        </div>
+
+        <!-- Right Side (Register Form) -->
+        <div class="right-content">
+            <h2>Register</h2>
+            <form id="RegisterForm">
+                <div class="input-group">
+                    <input type="text" id="user" name="name" placeholder="Enter your name" required>
+                </div>
+                <div class="input-group">
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="input-group">
+                    <input type="tel" id="phone_number" name="phone" placeholder="Enter your phone number" required>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="address" name="address" placeholder="Enter your address" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" id="btn">Register</button>
+            </form>
+            </form>
+            <p>Already have an account? <a href="{{ url_for('login')}}">Login here</a></p>
+            <a href="{{ url_for('home') }}" class="back-link">Back to Home</a>
+
+        </div>
+    </div>
+
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById('RegisterForm').addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                const user = document.getElementById('user').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const phone_number = document.getElementById('phone_number').value.trim();
+                const address = document.getElementById('address').value.trim();
+                const password = document.getElementById('password').value.trim();
+
+                if (!user || !email || !phone_number || !address || !password) {
+                    alert("All fields are required!");
+                    return;
+                }
+
+                const formData = { user, email, phone_number, address, password };
+
+                fetch("http://127.0.0.1:5000/user", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(formData),
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("Failed to register");
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        alert("Success: " + data.message);
+                        document.getElementById('RegisterForm').reset();
+                        window.location.href = '/login'; // Redirect to login page
+                    })
+                    .catch(error => {
+                        alert("Error: " + error.message);
+                    });
+            });
+        });
+
+    </script>
+</body>
+
+</html>

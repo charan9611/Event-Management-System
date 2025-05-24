@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMS</title>
+    <script type="module" src="/static/js/script.js"></script>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo"><ion-icon name=""></ion-icon>Event</div>
+        <nav class="nav-bar">
+            <ul>
+                <li><a href="{{ url_for('home')}}">HOME</a></li>
+                <li><a href="{{ url_for('about')}}">ABOUT</a></li>
+                <li><a href="{{ url_for('services')}}">SERVICES</a></li>
+                <li><a href="{{ url_for('contact')}}">CONTACT</a></li>
+                {% if session.get('user') is none %}
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('register') }}">Sign Up</a></li>
+                {% else %}
+                <li class="dropdown">
+                    <a href="javascript:void(0);" class="dropbtn" onclick="toggleDropdown()">Welcome, {{ session['user']
+                        }} </a>
+                    <div id="dropdownContent" class="dropdown-content">
+                        <a href="{{ url_for('logout') }}">Logout</a>
+                    </div>
+                </li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% endif %}
+
+            </ul>
+        </nav>
+        <div class="hamburger" id="hamburger"> &#9776;</div>
+    </header>
+
+    <div>
+        <section class="hero">
+            <div class="slideshow">
+                <div class="slide fade">
+                    <img src="../static/img/event1.jpeg" alt="Event 1">
+                </div>
+                <div class="slide fade">
+                    <img src="../static/img/event2.jpg" alt="Event 2">
+                </div>
+                <div class="slide fade">
+                    <img src="../static/img/event3.jpg" alt="Event 3">
+                </div>
+                <div class="slide fade">
+                    <img src="../static/img/event4.jpg" alt="Event 4">
+                </div>
+                <div class="slide fade">
+                    <img src="../static/img/event5.jpg" alt="Event 5">
+                </div>
+            </div>
+
+            <div class="hero-content" style="color: black;">
+                <h1>Your Perfect Event, Tailored to Perfection</h1>
+                <p>From weddings to corporate gatherings, we bring your vision to life.</p>
+
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+
+                <!-- <a href="#contact" class="btn">Contact Us</a> -->
+            </div>
+        </section>
+    </div>
+
+
+
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+
+    <footer class="bg-gray-900 text-white">
+        <!-- Top Footer: Quick Links and Social Media (left and right aligned) -->
+        <div class="max-w-6xl mx-auto py-8 px-4 flex justify-between items-start" style="display: inline-flex;">
+            <!-- Quick Links (Left) -->
+            <div style=" margin: 20px; left: auto; padding: 10px;">
+                <h2 class="text-lg font-semibold mb-4">Quick Links</h2>
+                <ul class="space-y-2" style="list-style:none; font-size: 1.3rem;">
+                    <li><a href="{{ url_for('home')}}" class="hover:underline">Home</a></li>
+                    <li><a href="{{url_for('services')}}" class="hover:underline">Events</a></li>
+                    <li><a href="{{ url_for('contact')}}" class="hover:underline">Contact</a></li>
+                    <li><a href="{{ url_for('about')}}" class="hover:underline">About</a></li>
+                </ul>
+            </div>
+
+            <!-- Social Media (Right) -->
+            <div style=" margin: 20px; left: auto; padding: 10px;">
+                <h2 class="text-lg font-semibold mb-4">Follow Us</h2>
+                <ul class="space-y-2" style="list-style:none; font-size: 1.3rem;">
+                    <li><a href="#" class="hover:text-blue-400">Facebook</a></li>
+                    <li><a href="#" class="hover:text-blue-300">Twitter</a></li>
+                    <li><a href="#" class="hover:text-pink-400">Instagram</a></li>
+                    <li><a href="#" class="hover:text-red-500">YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Bottom Footer: About Info -->
+        <div class="bg-gray-800 py-6 px-4 text-center text-sm">
+            <p>&copy; 2025 Event. All Rights Reserved.</p>
+            <p>123 Event Street, City, Country | Phone: +123 456 7890 | Email: contact@event.com</p>
+        </div>
+    </footer>
+
+
+
+
+    <script>
+        document.getElementById("explore-btn").addEventListener("click", function () {
+            document.getElementById("welcome-page").style.display = "none";
+            document.getElementById("main-content").classList.remove("hidden");
+        });
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            let slides = document.querySelectorAll(".slide");
+            let currentIndex = 0;
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.classList.remove("active");
+                    if (i === index) {
+                        slide.classList.add("active");
+                    }
+                });
+            }
+
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % slides.length;
+                showSlide(currentIndex);
+            }
+
+            // Show first slide initially
+            showSlide(currentIndex);
+
+            // Change slides every 4 seconds
+            setInterval(nextSlide, 4000);
+        });
+
+    </script>
+
+</body>
+
+</html>

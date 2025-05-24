@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | Event Management</title>
+    <!-- <link rel="stylesheet" href="../static/css/style.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script type="module" src="/static/js/script.js"></script>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            background-color: #222;
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-bar ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-bar ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            transition: 0.3s;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+
+        .nav-bar ul li a:hover {
+            background: #ff5733;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: black;
+            text-align: center;
+            /* margin-top: 20%; */
+        }
+
+        .hero {
+            background: url('/static/img/sh.jpg') center/cover;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+        }
+
+        .service-info {
+            background: #8a6c75;
+            padding: 20px;
+            color: white;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            /* Adjusts based on screen */
+            gap: 20px;
+            margin-top: 20px;
+            width: 90%;
+            margin: auto;
+        }
+
+        .service-box {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 400px;
+            /* Ensures enough space for all content */
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: auto;
+            /* Remove fixed height to allow full image */
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            background-size: cover;
+            justify-content: center;
+            min-height: 250px;
+            /* Adjust height to fit images properly */
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: auto;
+            opacity: 0;
+
+            /* transition: opacity 1s ease-in-out; */
+        }
+
+        .slide img {
+            width: 100%;
+            height: auto;
+            /* Ensures image retains its original aspect ratio */
+            object-fit: contain;
+            /* Keeps full image visible */
+            border-radius: 10px;
+
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            margin: 10px 0;
+        }
+
+        .service-description {
+            margin-top: 10px;
+        }
+
+        .read-more {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 15px;
+            background: #ff5733;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background0.3s;
+        }
+
+        .read-more {
+            display: block;
+            /* Ensure it's always visible */
+            text-align: center;
+            margin-top: auto;
+            /* Push it to the bottom */
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo"><ion-icon name="logo-react"></ion-icon>Event</div>
+        <nav class="nav-bar">
+            <ul>
+                <li><a href="{{ url_for('home')}}">HOME</a></li>
+                <li><a href="{{ url_for('about')}}">ABOUT</a></li>
+                <li><a href="{{ url_for('services')}}">SERVICES</a></li>
+                <li><a href="{{ url_for('contact')}}">CONTACT</a></li>
+                {% if 'user' not in session %}
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('register') }}">Sign Up</a></li>
+                {% else %}
+                <li class="dropdown">
+                    <a href="javascript:void(0);" class="dropbtn" onclick="toggleDropdown()">Welcome, {{ session['user']
+                        }} </a>
+                    <div id="dropdownContent" class="dropdown-content">
+                        <a href="{{ url_for('logout') }}">Logout</a>
+                    </div>
+                </li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        <div class="hamburger" id="hamburger"> &#9776;</div>
+    </header>
+    <div class="hero"> Our Services</div>
+    <!-- <div class="container"> -->
+    <div class="service-info">
+        <p>We offer a wide range of event planning services to make your special occasions unforgettable.
+            Our team ensures flawless execution, stunning decor, and seamless event management for your memorable
+            moments.</p>
+    </div>
+    <div class="container">
+        <div class="services-grid">
+            <!-- Service 1: Wedding Planning -->
+            <div class="service-box">
+                <div class="slideshow-container" id="wedding-slideshow">
+                    <div class="slide"><img src="../static/img/w1.jpg" alt="Wedding"></div>
+                    <div class="slide"><img src="../static/img/w5.webp" alt="Wedding"></div>
+                    <div class="slide"><img src="../static/img/w5.jpg" alt="Wedding"></div>
+                    <div class="slide"><img src="../static/img/w2.jpg" alt="Wedding"></div>
+                </div>
+                <h2 class="service-title">Wedding Planning</h2>
+                <p class="service-description">From grand royal weddings to intimate beach ceremonies, we make your
+                    dream wedding a reality.</p>
+                <a href="{{ url_for('wedding')}}" class="read-more">Learn More</a>
+            </div>
+
+            <!-- Service 2: Birthday & Private Parties -->
+            <div class="service-box">
+                <div class="slideshow-container" id="birthday-slideshow">
+                    <div class="slide"><img src="../static/img/hb1.webp" alt="Birthday"></div>
+                    <div class="slide"><img src="../static/img/p1.webp" alt="Birthday"></div>
+                    <div class="slide"><img src="../static/img/hb2.jpg" alt="Birthday"></div>
+                    <div class="slide"><img src="../static/img/hb3.webp" alt="Birthday"></div>
+                    <div class="slide"><img src="../static/img/p2.jpg" alt="Birthday"></div>
+                </div>
+                <h2 class="service-title">Birthday & Private Parties</h2>
+                <p class="service-description">Make every birthday and private celebration special with unique themes
+                    and unforgettable moments.</p>
+                <a href="{{ url_for('birthday')}}" class="read-more">Learn More</a>
+            </div>
+
+            <!-- Service 3: Anniversaries -->
+            <div class="service-box">
+                <div class="slideshow-container" id="anniversary-slideshow">
+                    <div class="slide"><img src="../static/img/an1.jpg" alt="Anniversary"></div>
+                    <div class="slide"><img src="../static/img/an2.jpg" alt="Anniversary"></div>
+                    <div class="slide"><img src="../static/img/an3.webp" alt="Anniversary"></div>
+                    <div class="slide"><img src="../static/img/an4.webp" alt="Anniversary"></div>
+                </div>
+                <h2 class="service-title">Anniversaries</h2>
+                <p class="service-description">Celebrate love and togetherness with beautifully planned anniversary
+                    events.</p>
+                <a href="{{ url_for('anniversary')}}" class="read-more">Learn More</a>
+            </div>
+
+            <!-- Service 4:College & Educational Events -->
+            <div class="service-box">
+                <div class="slideshow-container" id="college-slideshow">
+                    <div class="slide"><img src="../static/img/ce1.jpg" alt="College Event"></div>
+                    <div class="slide"><img src="../static/img/ce2.webp" alt="College Event"></div>
+                    <div class="slide"><img src="../static/img/ce4.jpg" alt="College Event"></div>
+                    <div class="slide"><img src="../static/img/ce3.jpg" alt="College Event"></div>
+                </div>
+                <h2 class="service-title">College & Educational Events</h2>
+                <p class="service-description">From fests to workshops, we handle every aspect of college events
+                    professionally.</p>
+                <a href="{{ url_for('college_events')}}" class="read-more">Learn More</a>
+            </div>
+
+            <!-- Service 5: Social & Cultural Events -->
+            <div class="service-box">
+                <div class="slideshow-container" id="social-slideshows">
+                    <div class="slide"><img src="../static/img/e1.jpg" alt="SocialEvent"></div>
+                    <div class="slide"><img src="../static/img/e2.jpg" alt="SocialEvent"></div>
+                    <div class="slide"><img src="../static/img/e3.png" alt="SocialEvent"></div>
+                </div>
+                <h2 class="service-title">Social & Cultural Events</h2>
+                <p class="service-description">Charity events, festive celebrations, and community meetups with flawless
+                    execution.</p>
+                <a href="{{ url_for('social_event')}}" class="read-more">Learn More</a>
+            </div>
+
+            <!-- Service 6: Baby Showers & Naming Ceremonies -->
+            <div class="service-box">
+                <div class="slideshow-container" id="babyshower-slideshows">
+                    <div class="slide"><img src="../static/img/bs1.jpg" alt="BabyShower"></div>
+                    <div class="slide"><img src="../static/img/bs2.webp" alt="BabyShower"></div>
+                    <div class="slide"><img src="../static/img/bs3.jpg" alt="BabyShower"></div>
+                </div>
+                <h2 class="service-title">Baby Showers & Naming Ceremonies </h2>
+                <p class="service-description">Celebrate the joy of a new arrival with beautifully planned baby showers
+                    and naming ceremonies.</p>
+                <a href="{{ url_for('baby_shower')}}" class="read-more">Learn More</a>
+            </div>
+
+
+            <!-- Service 7: concerts -->
+            <div class="service-box">
+                <div class="slideshow-container" id="concerts-slideshows">
+                    <div class="slide"><img src="../static/img/c1.jpg" alt="concerts"></div>
+                    <div class="slide"><img src="../static/img/c2.webp" alt="concerts"></div>
+                    <div class="slide"><img src="../static/img/c4.jpeg" alt="concerts"></div>
+                </div>
+                <h2 class="service-title">concerts</h2>
+                <p class="service-description">A concert, often known informally as a gig or show, is a live performance
+                    of music in front of an audience. s
+                </p>
+                <a href="{{ url_for('concert')}}" class="read-more">Learn More</a>
+            </div>
+
+
+            <!-- Service 8: House warming party -->
+
+
+            <div class="service-box">
+                <div class="slideshow-container" id="housewarming-slideshows">
+                    <div class="slide"><img src="../static/img/hw1.webp" alt="housewarming"></div>
+                    <div class="slide"><img src="../static/img/hw2.avif" alt="housewarming"></div>
+                    <div class="slide"><img src="../static/img/hw3.avif" alt="housewarming"></div>
+                </div>
+                <h2 class="service-title">House Warming party</h2>
+                <p class="service-description"> Whether you just moved into a new place or completed a major renovation,
+                </p>
+                <a href="{{ url_for('house_warming')}}" class="read-more">Learn More</a>
+            </div>
+
+
+            <!-- Service 9: Stage Events Organizer -->
+            <div class="service-box">
+                <div class="slideshow-container" id="stageevent-slideshows">
+                    <div class="slide"><img src="../static/img/se1.avif" alt="stageevent"></div>
+                    <div class="slide"><img src="../static/img/se2.jpeg" alt="stageevent"></div>
+                    <div class="slide"><img src="../static/img/se3.avif" alt="stageevent "></div>
+                </div>
+                <h2 class="service-title">Stage Event Organizer</h2>
+                <p class="service-description">An event organiser is a professional responsible for planning,
+                    coordinating, and executing events.</p>
+                <a href="{{ url_for('stage_event')}}" class="read-more">Learn More</a>
+            </div>
+
+        </div>
+    </div>
+
+
+    <footer class="bg-gray-900 text-white">
+        <!-- Top Footer: Quick Links and Social Media (left and right aligned) -->
+        <div class="max-w-6xl mx-auto py-8 px-4 flex justify-between items-start" style="display: inline-flex;">
+            <!-- Quick Links (Left) -->
+            <div style=" margin: 20px; left: auto; padding: 10px;">
+                <h2 class="text-lg font-semibold mb-4">Quick Links</h2>
+                <ul class="space-y-2" style="list-style:none; font-size: 1.3rem;">
+                    <li><a href="{{ url_for('home')}}" class="hover:underline">Home</a></li>
+                    <li><a href="{{url_for('services')}}" class="hover:underline">Events</a></li>
+                    <li><a href="{{ url_for('contact')}}" class="hover:underline">Contact</a></li>
+                    <li><a href="{{ url_for('about')}}" class="hover:underline">About</a></li>
+                </ul>
+            </div>
+
+            <!-- Social Media (Right) -->
+            <div style=" margin: 20px; left: auto; padding: 10px;">
+                <h2 class="text-lg font-semibold mb-4">Follow Us</h2>
+                <ul class="space-y-2" style="list-style:none; font-size: 1.3rem;">
+                    <li><a href="#" class="hover:text-blue-400">Facebook</a></li>
+                    <li><a href="#" class="hover:text-blue-300">Twitter</a></li>
+                    <li><a href="#" class="hover:text-pink-400">Instagram</a></li>
+                    <li><a href="#" class="hover:text-red-500">YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Bottom Footer: About Info -->
+        <div class="bg-gray-800 py-6 px-4 text-center text-sm">
+            <p>&copy; 2025 Event. All Rights Reserved.</p>
+            <p>123 Event Street, City, Country | Phone: +123 456 7890 | Email: contact@event.com</p>
+        </div>
+    </footer>
+
+    <script>
+        function startSlideshow(slideshowId) {
+            let slides = document.querySelectorAll(`#${slideshowId} .slide`);
+            let index = 0;
+
+            function showSlide() {
+                slides.forEach((slide, i) => {
+                    slide.style.opacity = i === index ? "1" : "0";
+                });
+                index = (index + 1) % slides.length;
+                setTimeout(showSlide, 3000);
+            }
+            showSlide();
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            startSlideshow("wedding-slideshow");
+            startSlideshow("birthday-slideshow");
+            startSlideshow("anniversary-slideshow");
+            startSlideshow("college-slideshow");
+            startSlideshow("social-slideshows");
+            startSlideshow("babyshower-slideshows");
+            startSlideshow("concerts-slideshows");
+            startSlideshow("housewarming-slideshows");
+            startSlideshow("stageevent-slideshows");
+        });
+    </script>
+</body>
+
+</html>
